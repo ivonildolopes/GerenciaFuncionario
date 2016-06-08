@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="titulo Janela"> Cadastro de Funcionario </ui:define>
+
+	<ui:define name="conteudoPage">
+		<h:form>
+
+			<p:panelGrid columns="3">
+
+				<f:facet name="header"> Inserir Funcionario</f:facet>
+
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{controleFuncionario.funcionario.nome}"
+					id="nome" />
+				<p:message for="nome" />
+
+				<p:outputLabel value="CPF" />
+				<p:inputText value="#{controleFuncionario.funcionario.cpf}" id="cpf" />
+				<p:message for="cpf" />
+
+				<p:outputLabel value="Email" />
+				<p:inputText value="#{controleFuncionario.funcionario.email}"
+					id="email" />
+				<p:message for="email" />
+
+				<p:outputLabel value="Salario" />
+				<p:inputText value="#{controleFuncionario.funcionario.salario}"
+					id="salario" >
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" pattern="#,##0.00"/>
+					</p:inputText>
+				<p:message for="salario" />
+
+				<p:outputLabel value="Data Nascimento" />
+				<p:inputMask mask="99/99/9999"
+					value="#{controleFuncionario.funcionario.dataNascimento}"
+					id="nascimento">
+					<f:converter converterId="converterCalendar" />
+				</p:inputMask>
+				<p:message for="nascimento" />
+
+				<p:outputLabel value="Ativo" />
+				<p:selectBooleanCheckbox
+					value="#{controleFuncionario.funcionario.ativo}" id="ativo" />
+				<p:message for="ativo" />
+
+				<p:outputLabel value="Usuario" />
+				<p:inputText value="#{controleFuncionario.funcionario.usuario}"
+					id="usuario"  redisplay="true"/>
+				<p:message for="usuario" />
+
+				<p:outputLabel value="Senha" />
+				<p:password value="#{controleFuncionario.funcionario.senha}"
+					id="senha" redisplay="true" weakLabel="Fraco" goodLabel="Bom"
+						strongLabel="Forte" />
+				<p:message for="senha" />
+
+				<p:outputLabel value="Grupo" />
+				<p:selectOneMenu value="#{controleFuncionario.funcionario.grupo}"
+					converter="#{controleFuncionario.converterGrupo}" id="grupo">
+					<f:selectItem itemLabel="Selecione um grupo"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{controleFuncionario.grupoDAO.listarTodos()}" />
+				</p:selectOneMenu>
+				<p:message for="grupo" />
+
+				<p:outputLabel value="Setor" />
+				<p:selectOneMenu value="#{controleFuncionario.funcionario.setor}"
+					converter="#{controleFuncionario.converterSetor}" id="setor">
+					<f:selectItem itemLabel="Selecione um Setor"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{controleFuncionario.setorDAO.listarTodos()}" />
+				</p:selectOneMenu>
+				<p:message for="setor" />
+
+
+
+				<h:commandButton value="Salvar"
+					action="#{controleFuncionario.salvar()}" styleClass="botaoSalvar"/>
+
+				<h:commandButton value="Cancelar"
+					action="#{controleFuncionario.cancelar()}" immediate="true" styleClass="botaoCancelar" />
+
+				<h:commandButton value="Novo"
+					action="#{controleFuncionario.novoFuncionario()}" styleClass="botaoNovo"/>
+
+
+			</p:panelGrid>
+		</h:form>
+
+
+
+	</ui:define>
+
+
+
+
+</ui:composition>
+
+
+</html>

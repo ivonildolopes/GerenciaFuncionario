@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/template_login.xhtml">
+
+	<ui:define name="content">
+
+		<div id="wrapper">
+		<h:form id="login-form" class="login-form">
+			<p:messages>
+			
+				<div class="header">
+					<h:graphicImage url="resources/images/devryBr.png"/>
+					<h1>Gis</h1>
+					<span>Gerenciamento Integrado de Saúde</span>
+				</div>
+
+				<div class="content">
+				<h:panelGrid columns="2" rendered="#{controleLogin.usuarioLogado == null}">  
+					<p:outputLabel value="Usuario" />
+					<p:inputText value="#{controleLogin.usuario}"
+					class="input username" placeholder="Digite um usuario"/>
+				<div class="user-icon" />		
+						
+					<p:outputLabel value="Senha"/>
+					<p:password value="#{controleLogin.senha}"
+					class="input password" placeholder="digite uma senha"/>
+					<div class="pass-icon" />	
+				
+					<h:commandButton action="#{controleLogin.efetuarLogin()}" value="Loggar" />
+				
+			 	</h:panelGrid>  
+				</div>
+			</p:messages>
+		</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

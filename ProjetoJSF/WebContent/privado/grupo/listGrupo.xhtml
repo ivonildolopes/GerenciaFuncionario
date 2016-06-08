@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="tituloJanela"> Cadastro de Grupos </ui:define>
+
+	<ui:define name="conteudoPage">
+		<h:form>
+			<p:messages/>
+			
+			<p:dataTable var="grupo" value="#{controleGrupo.grupoDAO.listarTodos()}"
+			rules="all" frame="box" cellpadding="3" style="width:80%;padding:30px;font-size:12px" 
+			emptyMessage="Nenhum resultado encontrado." resizableColumns="true"
+				rows="5" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15">
+			
+				<f:facet name="header">Listagem de Grupos</f:facet>
+				
+				
+				<p:column>
+					<f:facet name="header"> NOME </f:facet>
+					<p:outputLabel value="#{grupo.nome}"/>
+				</p:column>
+				
+				<p:column style="width:80px;">
+					<f:facet name="header"> ALTERAR </f:facet>
+					<h:commandButton action="#{controleGrupo.alterar(grupo)}" value="Alterar" styleClass="botaoAltera"  />
+				</p:column>
+				
+				<p:column style="width:80px;" >
+					<f:facet name="header"> REMOVER </f:facet>
+					<h:commandButton action="#{controleGrupo.remover(grupo)}" value="Remover" styleClass="botaoRemove" 
+					onclick="if(!confirm('Deseja realmente remover')) return false"/>
+				</p:column>
+			
+				<f:facet name="footer">
+						<div align="left">
+							<h:outputLabel value="Quantidade de grupo cadastrados: #{controleGrupo.grupoDAO.listarTodos().size()}"  />	
+						</div>
+					
+						
+						<div align="right">
+							<p:commandButton value="Criar Grupo" action="#{controleGrupo.novoGrupo()}"/>			
+						</div>
+						
+				</f:facet>
+			
+			</p:dataTable>
+			
+			
+		
+		</h:form>
+		
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

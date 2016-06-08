@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Sem permissão</title>
+</h:head>
+<h:body>
+	<h:form style="padding:100px">
+
+		<div align="center">
+			<h1>#{controleLogin.usuarioLogado.nome} Você não tem Permissão
+				para este servico</h1>
+
+
+			<h:graphicImage url="resources/images/semAcesso.jpg" />
+		
+			<h:commandLink action="/index?faces-redirect=true" value="pagina inicial" />	
+		</div>
+
+	</h:form>
+
+
+</h:body>
+</html>

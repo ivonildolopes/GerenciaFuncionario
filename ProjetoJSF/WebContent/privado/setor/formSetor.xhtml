@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="tituloJanela"> Cadastro de Setores</ui:define>
+
+	<ui:define name="conteudoPage">
+
+		<h:form style="padding:30px; padding-left:30%">
+			<p:growl />
+
+			<p:panelGrid columns="3">
+
+				<f:facet name="header">Inserir Setor</f:facet>
+
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{controleSetor.setor.nome}" id="nome" />
+				<p:message for="nome" />
+
+				<f:facet name="footer">
+					<h:commandButton action="#{controleSetor.salvar()}" value="Salvar" styleClass="botaoSalvar"
+						onclick="if(!confirm('DESEJA REALMENTE SALVAR')) return false" />
+
+					<h:commandButton action="#{controleSetor.cancelar()}"
+						value="Cancelar" immediate="true" styleClass="botaoCancelar"
+						onclick="if(!confirm('DESEJA REALMENTE CANCELAR?')) return false" />
+				</f:facet>
+
+
+			</p:panelGrid>
+
+
+
+		</h:form>
+
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+
+</html>

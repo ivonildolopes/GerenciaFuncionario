@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="titulo Janela"> Consulta de Funcionario</ui:define>
+
+	<ui:define name="conteudoPage">
+		<h:form>
+			<p:messages/>
+
+			<h:outputLabel value="Nome: " />
+			<h:selectBooleanCheckbox value="#{controleFuncionario.nome}">
+				<f:ajax render="tabela" execute="@this" />
+			</h:selectBooleanCheckbox>
+
+			<h:outputLabel value="CPF: " />
+			<h:selectBooleanCheckbox value="#{controleFuncionario.cpf}">
+				<f:ajax render="tabela" execute="@this" />
+			</h:selectBooleanCheckbox>
+
+			<h:outputLabel value="Email: " />
+			<h:selectBooleanCheckbox value="#{controleFuncionario.email}">
+				<f:ajax render="tabela" execute="@this" />
+			</h:selectBooleanCheckbox>
+
+			<h:outputLabel value="Data Nascimento: " />
+			<h:selectBooleanCheckbox value="#{controleFuncionario.nascimento}">
+				<f:ajax render="tabela" execute="@this" />
+			</h:selectBooleanCheckbox>
+
+			<p:dataTable var="funcionario"
+				value="#{controleFuncionario.funcionarioDAO.listarTodos()}"
+				id="tabela" style="width:80%;font-size:12px" 
+				emptyMessage="Nenhum resultado encontrado." resizableColumns="true"
+				rows="5" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15">
+
+				<f:facet name="header">Listagem de Funcionario </f:facet>
+
+				<p:column rendered="#{controleFuncionario.nome==true}">
+					<f:facet name="header">NOME</f:facet>
+					<p:outputLabel value="#{funcionario.nome}" />
+				</p:column>
+
+				<p:column rendered="#{controleFuncionario.cpf==true}"
+					style="width:130px">
+					<f:facet name="header">CPF</f:facet>
+					<p:outputLabel value="#{funcionario.cpf}" />
+				</p:column>
+
+				<p:column rendered="#{controleFuncionario.email==true}">
+					<f:facet name="header">EMAIL</f:facet>
+					<p:outputLabel value="#{funcionario.email}" />
+				</p:column>
+
+				<p:column rendered="#{controleFuncionario.nascimento==true}"
+					style="width:100px">
+					<f:facet name="header">DT NASCIMENTO</f:facet>
+					<p:outputLabel value="#{funcionario.dataNascimento}">
+						<f:converter converterId="converterCalendar" />
+					</p:outputLabel>
+				</p:column>
+
+				<p:column style="width:130px">
+					<f:facet name="header">GRUPO</f:facet>
+					<p:outputLabel value="#{funcionario.grupo.nome}" />
+				</p:column>
+
+				<p:column style="width:150px">
+					<f:facet name="header">SETOR</f:facet>
+					<p:outputLabel value="#{funcionario.setor.nome}" />
+				</p:column>
+
+				<p:column style="width:85px">
+					<f:facet name="header">ALTERAR</f:facet>
+					<p:commandButton styleClass="botaoAltera"
+						action="#{controleFuncionario.alterar(funcionario)}"
+						value="alterar" />
+				</p:column>
+
+				<p:column style="width:85px">
+					<f:facet name="header">REMOVER</f:facet>
+					<p:commandButton styleClass="botaoLogin"
+						action="#{controleFuncionario.remover(funcionario)}"
+						value="remover" 
+						onclick="if(!confirm('Deseja remover o funcionario '#{funcionario.nome})) return false" />
+				</p:column>
+
+			</p:dataTable>
+
+			<h:commandButton action="#{controleFuncionario.novoFuncionario()}"
+				value="novo funcionario"/>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

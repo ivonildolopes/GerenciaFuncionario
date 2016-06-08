@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="titulo Janela"> Consulta de Projeto</ui:define>
+
+	<ui:define name="conteudoPage">
+		<h:form>
+			
+			<p:dataTable var="projeto"
+				value="#{controleProjeto.projetoDAO.listarTodos()}" id="tabela"
+				style="width:100%;font-size:12px"
+				emptyMessage="Nenhum resultado encontrado." resizableColumns="true"
+				rows="5" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15">
+
+				<f:facet name="header">Listagem de Projeto </f:facet>
+
+				<p:column>
+					<f:facet name="header">PROJETO</f:facet>
+					<p:outputLabel value="#{projeto.nome}" />
+				</p:column>
+
+				<p:column style="width:130px">
+					<f:facet name="header">DESCRICAO</f:facet>
+					<p:outputLabel value="#{projeto.descricao}" />
+				</p:column>
+
+				<p:column style="width:80px">
+					<f:facet name="header">DATA INICIO</f:facet>
+					<p:outputLabel value="#{projeto.data_inicio}">
+						<f:converter converterId="converterCalendar" />
+					</p:outputLabel>
+				</p:column>
+
+				<p:column style="width:80px">
+					<f:facet name="header">DATA TERMINO</f:facet>
+					<p:outputLabel value="#{projeto.data_fim}">
+						<f:converter converterId="converterCalendar" />
+					</p:outputLabel>
+				</p:column>
+
+				<p:column style="width:55px">
+					<f:facet name="header">ATIVO</f:facet>
+					<p:outputLabel value="#{projeto.ativo == true ? 'SIM' : 'NAO'}" />
+				</p:column>
+
+				<p:column style="width:110px">
+					<f:facet name="header">SETOR</f:facet>
+					<p:outputLabel value="#{projeto.setor.nome}" />
+				</p:column>
+
+				<p:column style="width:90px">
+					<f:facet name="header">QTD FUNCIONARIO</f:facet>
+					<div align="center">
+						<p:outputLabel value="#{projeto.listaFuncionariosProjeto.size()}" />
+					</div>
+				</p:column>
+
+				<p:column style="width:85px">
+					<f:facet name="header">ALTERAR</f:facet>
+					<h:commandButton action="#{controleProjeto.alterar(projeto)}" styleClass="botaoAltera"
+						value="alterar" />
+				</p:column>
+
+				<p:column style="width:85px">
+					<f:facet name="header">REMOVER</f:facet>
+					<h:commandButton action="#{controleProjeto.remover(projeto)}" styleClass="botaoRemove"
+						value="remover" onclick="if(!confirm('Deseja excluir esse projeto')) return false"/>
+				</p:column>
+				
+				<f:facet name="footer">
+					<h:commandButton action="#{controleProjeto.novoProjeto()}" value="Novo" styleClass="botaoNovo"/>
+				</f:facet>
+
+			</p:dataTable>
+
+
+		</h:form>
+
+
+
+	</ui:define>
+
+
+
+
+</ui:composition>
+
+
+</html>

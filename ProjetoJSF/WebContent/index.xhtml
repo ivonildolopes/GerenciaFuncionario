@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="tituloJanela"> Pagina Inicial </ui:define>
+
+	<ui:define name="conteudoPage">
+		
+		<h:form id="form-login" class="form-login" style="padding:130px">
+		<div class="tituloform">
+			<h1>Seja Bem vindo ao sistema de controle de funcionarios </h1>
+		</div>		
+				<div align="right">
+				<p:outputLabel
+					value="#{controleLogin.saldacao()}, Seja Bem vindo #{controleLogin.usuarioLogado.nome}" style="Color:#990000" />
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+
+</html>

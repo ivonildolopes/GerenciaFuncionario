@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/template_login.xhtml">
+
+
+	<ui:define name="content">
+
+		<div id="alinharCentro">
+		<h:form id="form-login" class="form-login">
+			<p:messages>  
+			
+				<div class="tituloform">
+					<h:graphicImage url="resources/images/devryBr.png"/>
+					<h1>GeF</h1>
+					<span>Gerenciamento de Funcionario</span>
+				</div>
+
+				<div class="conteudo">
+				<!--  <h:panelGrid columns="2" rendered="#{controleLogin.usuarioLogado == null}"> -->
+					<p:outputLabel value="Usuario"/>
+					<p:inputText value="#{controleLogin.usuario}" placeholder="Nome do Usuario"
+					styleClass="campos"/>
+					<div class="usuario-icon" />	
+						
+					<p:outputLabel value="Senha"/>
+					<p:password value="#{controleLogin.senha}" placeholder="Senha" styleClass="campos"/>	
+					<div class="password-icon" />	
+				
+					<h:commandButton action="#{controleLogin.efetuarLogin()}" value="Entrar" styleClass="botaoLoginn" />
+					<h:commandLink value="Esqueci minha senha" style="font-size:10px" />
+				<!--  </h:panelGrid>-->
+				</div>
+			 	  		</p:messages> 
+		</h:form>
+		</div>
+	</ui:define>
+	
+</ui:composition>
+</html>

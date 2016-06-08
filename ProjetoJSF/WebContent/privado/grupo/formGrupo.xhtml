@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="tituloJanela"> Cadastro de Grupos </ui:define>
+
+	<ui:define name="conteudoPage">
+
+		<h:form id="formulario" style="padding:30px; padding-left:25%">
+			<p:messages />
+
+			<p:panelGrid columns="3">
+
+				<f:facet name="header">Inserir Grupo</f:facet>
+
+				<p:outputLabel value="Nome do Grupo" />
+				<p:inputText value="#{controleGrupo.grupo.nome}" id="nome" />
+				<p:message for="nome" />
+
+				<f:facet name="footer">
+					<h:commandButton action="#{controleGrupo.salvar()}" value="Salvar" styleClass="botaoSalvar"
+						/>
+
+					<h:commandButton action="#{controleGrupo.cancelar()}"
+						value="Cancelar" styleClass="botaoCancelar"
+						onclick="if(!confirm('DESEJA REALMENTE CANCELAR')) return false" immediate="true"/>
+
+					<h:commandButton action="#{controleGrupo.novoGrupo()}" value="Novo" styleClass="botaoNovo"/>
+				</f:facet>
+
+
+			</p:panelGrid>
+
+			
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

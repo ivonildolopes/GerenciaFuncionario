@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:body>
+
+	<div align="left">
+		<h:outputLabel
+			value="usuario:#{controleLogin.usuarioLogado.nome}" 
+			style="font-size:12px;font-style:oblique" >
+		
+		</h:outputLabel>
+		<h:outputLabel
+			value=" - " 
+			style="font-size:12px" >
+		
+		</h:outputLabel>	
+		<h:outputLabel
+			value="#{controleLogin.dataAtual}" 
+			style="font-size:12px" >
+				<f:converter converterId="converterDate" />
+		</h:outputLabel>	
+		
+		
+	</div>
+</h:body>
+</html>
